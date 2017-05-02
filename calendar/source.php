@@ -10,7 +10,7 @@
 	$servername = "203.64.84.32";
 	$username = "test";
 	$password = "5jru6j04m4au4a83";
-	$dbname = "research";
+	$dbname = "calendar";
 
 
 	$conn =mysqli_connect($servername, $username, $password, $dbname);
@@ -22,10 +22,10 @@
 		$data[] = array(
 		'id' => $row['id'],//事件id
 		'title' => $row['name'],//事件标题
-		'start' => str_replace("/","-",$row['date']) ,//事件开始时间
-		'end' => str_replace("/","-",$row['date']),//结束时间
-		'allDay' => true, //是否为全天事件 //這裡還要修改成上午和下午事件
-		'color' => "red" //事件的背景色
+		'start' => $row['start'] ,//事件开始时间
+		'end' => $row['end'],//结束时间
+		'allDay' => ($row['allday']=="true")?true:false, //是否为全天事件 //這裡還要修改成上午和下午事件
+		'color' => $row['color'] //事件的背景色
 		);
 	}
 
