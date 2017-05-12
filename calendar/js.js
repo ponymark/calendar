@@ -1,12 +1,6 @@
 $(document).ready(function() {
-
-    // page is now ready, initialize the calendar...
     $('#calendar').fullCalendar({
-        // put your options and callbacks here
         locale: 'zh-tw',
-
-        //height: $( window ).height(),
-
 
 		theme: true,
 		header: {
@@ -14,59 +8,73 @@ $(document).ready(function() {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay,listMonth'
 		},
-		navLinks: true, // can click day/week names to navigate views
+		navLinks: true, 
 		editable: true,
-		eventLimit: true, // allow "more" link when too many events
+		eventLimit: true,
 
 
  		events: 'source.php',
 
  		dayClick: function(date, jsEvent, view) {
-	        $.fancybox.open({
-				src  : '#hidden-content',
-				type : 'inline',
-				opts : {
-					onComplete : function() {
-						console.info('done!');
+
+ 			$('#date').text($.fullCalendar.formatDate(date,'YYYY-MM-DD'));
+
+ 			$(this).popover({
+            	html: true,
+            	placement: 'auto',
+            	title: function() {
+            	},
+            	content: function() {
+            	    return $("#hidden-content").html();
+            	},container: 'body'
+        	});
+
+			$(this).popover('toggle');
+
+
+ 			$('.popover-content p #add').unbind("click");
+    		$('.popover-content p #add').click(function(e){
+
+				$.ajax({
+					url: "insert.php",
+					type: "POST",
+					dataType: 'text',
+					data: 'date='+$('#date').text()+'&name='+$('.popover-content p #name').val(),
+					success:function(json)
+					{
+				
+					    $('#name').val("");
+						$('#calendar').fullCalendar( 'refetchEvents' );
 					}
-				}
+					,error:function(json){
+						
+					}
+				});
+				$('.popover').popover('hide');
 			});
-
-			$('#date').text($.fullCalendar.formatDate(date,'YYYY-MM-DD'));
-
-				//
-				//$.fancybox.close(this);
-
-
 		},
 		eventClick: function(calEvent, jsEvent, view) {
-			$.fancybox.open({
-				src  : '#hidden-content2',
-				type : 'inline',
-				opts : {
-					onComplete : function() {
-						console.info('done!');
-					}
-				}
-			});
-			$('#date2').text($.fullCalendar.formatDate(calEvent.start,'YYYY-MM-DD'));
-			$('#name2').text(calEvent.title);
-			$('#eventid').text(calEvent.id);
+			$('.popover').popover('hide');
+			$('#test').css("display","block");
+			$('#calendar').css("display","none");
+			$('#date3').text($.fullCalendar.formatDate(calEvent.start,'YYYY-MM-DD'));
+			$('#name3').val(calEvent.title);
+			$('#eventid2').text(calEvent.id);
     	}
     });
 
-	$('#add').unbind("click");
-    $('#add').click(function(e){
+    $('#update').unbind("click");
+    $('#update').click(function(e){
 
 		$.ajax({
-			url: "insert.php",
+			url: "update.php",
 			type: "POST",
 			dataType: 'text',
-			data: 'date='+$('#date').text()+'&name='+$('#name').val(),
+			data: 'id='+$('#eventid2').text()+'&date='+$('#date3').text()+'&name='+$('#name3').val(),
 			success:function(json)
 			{
 				
-			    $('#name').val("");
+			    $('#name3').val("");
 				$('#calendar').fullCalendar( 'refetchEvents' );
 			}
 			,error:function(json){
@@ -74,17 +82,19 @@ $(document).ready(function() {
 			}
 		});
 		
-		$.fancybox.close(this);
+		$('#calendar').css("display","block");
+		$('#test').css("display","none");
 	});
 
-    $('#delete').unbind("click");
-    $('#delete').click(function(e){
+
+	$('#delete2').unbind("click");
+    $('#delete2').click(function(e){
 
 		$.ajax({
 			url: "delete.php",
 			type: "POST",
 			dataType: 'text',
-			data: 'id='+$('#eventid').text(),
+			data: 'id='+$('#eventid2').text(),
 			success:function(json)
 			{
 				$('#calendar').fullCalendar( 'refetchEvents' );
@@ -94,7 +104,31 @@ $(document).ready(function() {
 			}
 		});
 		
-		$.fancybox.close(this);
+		$('#calendar').css("display","block");
+		$('#test').css("display","none");
 	});
 
+    $('#comeback').unbind("click");
+    $('#comeback').click(function(e){
+    	$('#calendar').css("display","block");
+		$('#test').css("display","none");
+
+	});
+
+    $('#ttt2').unbind("click");
+    $('#ttt2').click(function(e){
+    	$('#jjj2 option:selected').each(function(i,selected){
+    		$('#jjjj2').append('<option value=\"'+$(selected).text()+'\">'+$(selected).text()+'</option>');
+    		});
+		
+    	$('#jjj2 option:selected').remove();
+	});
+    $('#tttt2').unbind("click");
+    $('#tttt2').click(function(e){
+    	$('#jjjj2 option:selected').each(function(i,selected){
+    		$('#jjj2').append('<option value=\"'+$(selected).text()+'\">'+$(selected).text()+'</option>');
+    		});
+
+       	$('#jjjj2 option:selected').remove();
+	});
 })
