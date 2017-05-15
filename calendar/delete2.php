@@ -1,8 +1,8 @@
 <?php
 
-if (isset($_POST["id"])) 
+if (isset($_POST["aid"])) 
 {
-	$id=$_POST["id"];
+	$aid=$_POST["aid"];
 	$servername = "203.64.84.32";
 	$username = "test";
 	$password = "5jru6j04m4au4a83";
@@ -13,14 +13,11 @@ if (isset($_POST["id"]))
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-	$sql = "DELETE FROM activity WHERE id=".$id;
-
-	$conn->exec($sql);
-
-	$sql = "DELETE FROM activityandolder WHERE activityid=".$id;
+	$sql = "DELETE FROM activityandolder WHERE activityid=".$aid;
 
 	$conn->exec($sql);
 	
+
 	$conn = null;
 }
 ?>

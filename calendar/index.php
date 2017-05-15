@@ -61,8 +61,8 @@
         </div>
 
         <div >
-          <label style="vertical-align:top;display:  inline-block;font-size: 200%;text-align: center;position: relative;width: 20%;left: 20%;right: 0%;">未選成員</label>
-          <label style="vertical-align:top;display:  inline-block;font-size: 200%;text-align: center;position: relative;width: 20%;left: 40%;right: 0%;">已選成員</label>
+          <label style="vertical-align:top;display:  inline-block;font-size: 200%;text-align: center;position: relative;width: 20%;left: 20%;right: 0%;">未選長者</label>
+          <label style="vertical-align:top;display:  inline-block;font-size: 200%;text-align: center;position: relative;width: 20%;left: 40%;right: 0%;">已選長者</label>
         </div>
 
         <div>
@@ -83,15 +83,10 @@
 
 
 
-          <select id='jjjj2' multiple style="vertical-align:middle;display:  inline-block;position: relative;width: 20%;left: 20%;right: 0%;font-size: 200%;">
+          <select id='jjjj2' multiple style="vertical-align:middle;display:  inline-block;text-align: center;position: relative;width: 20%;left: 20%;right: 0%;font-size: 200%;">
           </select>
         </div>
-
-
-
       </div>
-
     </div>
-
   </body>
 </html>

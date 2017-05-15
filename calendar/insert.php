@@ -20,7 +20,7 @@ if (isset($_POST["date"]) && isset($_POST["name"]))
 	if($stmt->rowCount() > 0)
 	{
 		$id = $stmt->fetchColumn()+1;
-		$color="red";
+		$color="#3a87ad";
 		$vv="true";
 
 		$sql = $conn->prepare("INSERT INTO activity (id, name, start,end,color,allday)VALUES (:id, :name, :start,:end,:color,:allday)");
@@ -37,7 +37,7 @@ if (isset($_POST["date"]) && isset($_POST["name"]))
 	else
 	{
 		$sql = $conn->prepare("INSERT INTO activity (id, name, start,end,color,allday)VALUES (:id, :name, :start,:end,:color,:allday)");
-		$color="red";
+		$color="#3a87ad";
 		$vv="true";
 
 		$id=1;

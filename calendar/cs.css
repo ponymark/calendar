@@ -5,7 +5,11 @@
 		font-size: 14px ;
 	}
 
-	#calendar,#test {
+	#calendar {
 		max-width: 900px ;
+		margin: 0 auto ;
+	}
+	#test {
+		max-width: 3000px ;
 		margin: 0 auto ;
 	}
