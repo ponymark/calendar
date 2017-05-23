@@ -26,7 +26,10 @@
 		'end' => $row['end'],//结束时间
 		'allDay' => ($row['allday']=="true")?true:false, //是否为全天事件 //這裡還要修改成上午和下午事件
 		'color' => $row['color'], //事件的背景色
-		'content' => $row['content']
+		'content' => $row['content'],
+		'time' => $row['time'],
+		'time1' => $row['time1'],
+		'time2' => $row['time2']
 		);
 	}
 

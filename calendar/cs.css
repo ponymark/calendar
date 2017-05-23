@@ -13,3 +13,10 @@
 		max-width: 3000px ;
 		margin: 0 auto ;
 	}
+	.popover-content #cc .jColorSelect{
+		margin: 0 auto ;
+	}
+	#color .jColorSelect{
+		position: relative;
+		left: 0%;
+	}
